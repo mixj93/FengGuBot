@@ -50,7 +50,6 @@ bot.command('tv', (ctx) => {
 })
 bot.mention(process.env.BOT_USERNAME, ctx => {
   const msg = ctx.update.message
-  console.log(msg)
   const keyword = msg.text.split(`@${BOT_USERNAME}`).join(' ').trim().replace(/\s\s+/g, ' ')
   console.log(`[SEARCH] ${logger(ctx.update.message)}, ${keyword}`)
   ctx.reply(DATA.getSearchRes(keyword), {

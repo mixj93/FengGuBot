@@ -4,14 +4,15 @@ const express = require('express')
 const expressApp = express()
 const DATA = require('./data')
 
-if (!process.env.BOT_USERNAME) {
+const API_TOKEN = process.env.API_TOKEN || ''
+const PORT = process.env.PORT || 3000
+const URL = process.env.URL || ''
+const BOT_USERNAME = process.env.BOT_USERNAME || ''
+
+if (!BOT_USERNAME) {
   console.error('Please set bot username.')
   return
 }
-
-const API_TOKEN = process.env.API_TOKEN || '';
-const PORT = process.env.PORT || 3000;
-const URL = process.env.URL || '';
 
 let agent = null
 if (process.env.SOCKS_PROXY) {
@@ -42,9 +43,9 @@ bot.command('tv', (ctx) => {
   ctx.reply(DATA.TV_INFO)
 })
 bot.mention(process.env.BOT_USERNAME, ctx => {
-  const botInfo = ctx.botInfo
   const msg = ctx.update.message
-  const keyword = msg.from.text.split(`@${botInfo.username}`).join(' ').trim().replace(/\s\s+/g, ' ')
+  console.log(msg)
+  const keyword = msg.from.text.split(`@${BOT_USERNAME}`).join(' ').trim().replace(/\s\s+/g, ' ')
   console.log(`[SEARCH] ${logger(ctx.update.message)}, ${keyword}`)
   ctx.reply(DATA.getSearchRes(keyword), {
     reply_to_message_id: msg.from.message_id

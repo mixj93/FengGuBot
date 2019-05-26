@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3000
 const URL = process.env.URL || ''
 const BOT_USERNAME = process.env.BOT_USERNAME || ''
 
+const logger = (msg) => `[${msg.from.id}] ${msg.from.first_name} ${msg.from.last_name} (${msg.from.username}) ${msg.from.language_code}`
+
 if (!BOT_USERNAME) {
   console.error('Please set bot username.')
   return
@@ -22,9 +24,13 @@ if (process.env.SOCKS_PROXY) {
 const bot = new Telegraf(process.env.BOT_TOKEN, { telegram: { agent } })
 
 bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
-bot.startWebhook(`/bot${API_TOKEN}`, null, PORT)
-
-const logger = (msg) => `[${msg.from.id}] ${msg.from.first_name} ${msg.from.last_name} (${msg.from.username}) ${msg.from.language_code}`
+expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+expressApp.get('/ping', (req, res) => {
+  res.send('pong');
+});
+expressApp.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 bot.help((ctx) => {
   console.log(`[HELP] ${logger(ctx.update.message)}`)

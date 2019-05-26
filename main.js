@@ -45,10 +45,10 @@ bot.command('tv', (ctx) => {
 bot.mention(process.env.BOT_USERNAME, ctx => {
   const msg = ctx.update.message
   console.log(msg)
-  const keyword = msg.from.text.split(`@${BOT_USERNAME}`).join(' ').trim().replace(/\s\s+/g, ' ')
+  const keyword = msg.text.split(`@${BOT_USERNAME}`).join(' ').trim().replace(/\s\s+/g, ' ')
   console.log(`[SEARCH] ${logger(ctx.update.message)}, ${keyword}`)
   ctx.reply(DATA.getSearchRes(keyword), {
-    reply_to_message_id: msg.from.message_id
+    reply_to_message_id: msg.message_id
   })
 })
 bot.launch()

@@ -1,0 +1,17 @@
+{
+  "name": "FengGuBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "keywords": [],
+  "author": "mixj93 <lixueli93@gmail.com> (http://mixj93.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "socks-proxy-agent": "4.0.2",
+    "telegraf": "3.29.0"
+  }
+}

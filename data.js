@@ -119,7 +119,7 @@ const ITEMS = [
   }
 ]
 
-exports.HELP_MSG = COMMANDS.map(c => `/${c.name} - ${c.description}`).join('\n') + '\n输入关键字 @我 搜索影片信息'
+exports.HELP_MSG = COMMANDS.map(c => `/${c.name} - ${c.description}`).join('\n') + '\n🔎 输入关键字 @我 搜索影片信息'
 
 exports.MOVIES_INFO = ITEMS.filter(i => i.type === 'movie')
   .map(i => getItemInfo(i)).join('\n')

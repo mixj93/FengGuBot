@@ -116,6 +116,13 @@ const ITEMS = [
     type: 'tv',
     url: 'https://www.fenggusub.com/the-new-yorker-presents-season1/',
     year: ''
+  },
+  {
+    title: '硅谷发明家：吸血成金',
+    originTitle: 'The Inventor: Out For Blood in Silicon Valley',
+    type: 'movie',
+    url: 'https://www.fenggusub.com/the-inventor-out-for-blood-in-silicon-valley-2019/',
+    year: '2019'
   }
 ]
 
